@@ -12,7 +12,7 @@
 
 <body>
   <div class="call-out">
-    <h1>Hobo Life</h1><button class="btn">Play Button</a>
+    <h1>Hobo Life</h1><button id="Play Button" class="btn">Play Button</button><audio id="my audio">wsw.mp3</audio>
   </div>
 
   <section class="section">
@@ -121,9 +121,27 @@
       callout.style.borderColor = '#e91e63'; /* Pinkish border */
       callout.style.backgroundColor = '#fce4ec'; /* Light pinkish background */
     });
-function newMusic() {
-document.getElementById(music);wsw.mp3.play};
-         
+// Get references to the audio element and the button
+const myAudio = document.getElementById('myAudio');
+const playButton = document.getElementById('playButton');
+
+// Add an event listener to the button
+playButton.addEventListener('click', function() {
+    // Check if the music is currently paused
+    if (myAudio.paused) {
+        myAudio.play(); // If paused, play the music
+        playButton.textContent = 'Pause Music'; // Change button text
+    } else {
+        myAudio.pause(); // If playing, pause the music
+        playButton.textContent = 'Play Music'; // Change button text
+    }
+});
+
+// Optional: Listen for when the music ends to reset the button text
+myAudio.addEventListener('ended', function() {
+    playButton.textContent = 'Play Music';
+});
+
   </script>
 </body>
 
